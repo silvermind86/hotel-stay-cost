@@ -3,6 +3,7 @@ package br.com.cvc.hotelbff.adapters;
 import br.com.cvc.hotelbff.exceptions.AdapterHttpException;
 import br.com.cvc.hotelbff.models.dtos.HotelDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ public class CvcBackendHotelAdapter {
     @Autowired
     RestTemplate restTemplate;
 
+    @Cacheable("costs")
     public List<HotelDto> getHotels(Long cityCode) {
         List<HotelDto> hotels = new ArrayList<>();
 
